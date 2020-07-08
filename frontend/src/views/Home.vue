@@ -15,6 +15,8 @@
       ></v-carousel-item>
     </v-carousel>
 
+    <h2>Let's check top 10 cool things.</h2>
+
     <v-card v-for="number in numbers" :key="number.id"
             class="mx-auto mb-15"
     >
@@ -114,13 +116,14 @@ export default {
 </script>
 
 <style scoped>
-  h1{
+  h1, h2{
     text-align: center;
+    margin-bottom: 20px;
   }
 
   .post-container{
     margin-top: 50px;
-    padding: 0 100px;
+    padding: 0 50px;
   }
 
   @media screen and (min-width: 900px) {
