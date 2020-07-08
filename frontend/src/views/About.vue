@@ -34,15 +34,20 @@
               ></v-text-field>
             </v-flex>
             <v-flex xs10 md6 offset-xs1 offset-md3>
-            <v-text-field
-                    box
-                    name="message"
-                    append-icon="mdi-border-color"
-                    label="Your message"
-                    textarea
-            ></v-text-field>
-          </v-flex>
+              <v-text-field
+                      box
+                      name="message"
+                      append-icon="mdi-border-color"
+                      label="Your message"
+                      textarea
+              ></v-text-field>
+            </v-flex>
           </v-layout>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary">Send</v-btn>
+            <v-spacer></v-spacer>
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>

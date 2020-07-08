@@ -26,18 +26,18 @@
               height="0"
               tile
       >
-        <v-toolbar color="primary" dense>
+        <v-toolbar color="primary" dense fixed>
 
           <v-icon dark right medium>mdi-vimeo</v-icon>
 
           <v-spacer></v-spacer>
 
-        <router-link class="hidden-sm-and-down" v-for="component in components" :key="component.id" :to="component.path">
-            <v-btn color="white" text large>{{component.title}}
-              <v-icon dark right medium>{{component.icon}}</v-icon>
-            </v-btn>
-          <div></div>
-        </router-link>
+          <router-link class="hidden-sm-and-down" v-for="component in components" :key="component.id" :to="component.path">
+              <v-btn color="white" text large>{{component.title}}
+                <v-icon dark right medium>{{component.icon}}</v-icon>
+              </v-btn>
+            <div></div>
+          </router-link>
 
           <v-app-bar-nav-icon class="d-md-none" color="white" @click="drawer=!drawer"></v-app-bar-nav-icon>
         </v-toolbar>
