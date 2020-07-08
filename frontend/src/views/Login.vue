@@ -1,6 +1,6 @@
 <template>
         <div class="login-container">
-            <v-row
+            <v-row  class="mb-10"
                     align="center"
                     justify="center"
             >

@@ -151,6 +151,10 @@ export default {
     padding: 0 50px;
   }
 
+  .v-btn--fixed.v-btn--bottom{
+    bottom: 40px;
+  }
+
   @media screen and (min-width: 900px) {
     .post-container{
       padding: 0 300px;

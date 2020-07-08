@@ -47,14 +47,15 @@
       </div>
 
 
-<!--      <v-footer-->
-<!--              color="primary"-->
-<!--              app-->
-<!--      >-->
-<!--        <v-spacer></v-spacer>-->
+      <v-footer
+              color="primary"
+              app
+              absolute
+      >
+        <v-spacer></v-spacer>
 
-<!--        <span class="white&#45;&#45;text">&copy; {{ new Date().getFullYear() }}</span>-->
-<!--      </v-footer>-->
+        <span class="white--text">&copy; {{ new Date().getFullYear() }}</span>
+      </v-footer>
     </v-app>
 </template>
 
@@ -96,7 +97,7 @@ export default {
 </script>
 <style scoped>
   .content{
-    margin-top: 50px;
+    margin: 50px 0;
   }
   .router-link-exact-active div{
     height: 1px;
