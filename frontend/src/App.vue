@@ -16,6 +16,15 @@
               <v-list-item-title>{{component.title}}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item @click="logout" v-if="isLogged">
+            <v-list-item-action>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-action>
+
+            <v-list-item-content>
+              <v-list-item-title>Logout</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
       </v-navigation-drawer>
 
@@ -31,15 +40,15 @@
           <v-icon dark right medium>mdi-vimeo</v-icon>
 
           <v-spacer></v-spacer>
-          <v-btn @click="logout" v-if="isLogged" v color="white" text large>Logout
-            <v-icon dark right medium>mdi-home</v-icon>
-          </v-btn>
           <router-link class="hidden-sm-and-down" v-for="component in components" :key="component.id" :to="component.path">
               <v-btn color="white" text large>{{component.title}}
                 <v-icon dark right medium>{{component.icon}}</v-icon>
               </v-btn>
             <div></div>
           </router-link>
+          <v-btn class="hidden-sm-and-down" @click="logout" v-if="isLogged" v color="white" text large>Logout
+            <v-icon dark right medium>mdi-home</v-icon>
+          </v-btn>
 
           <v-app-bar-nav-icon class="d-md-none" color="white" @click="drawer=!drawer"></v-app-bar-nav-icon>
         </v-toolbar>
