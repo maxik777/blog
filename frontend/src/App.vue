@@ -7,7 +7,7 @@
               right
       >
         <v-list dense>
-          <v-list-item v-for="component in components" :key="component.id" :to="component.path" link>
+          <v-list-item @click="checking(component.title)" v-for="component in components" :key="component.id" :to="component.path" link>
             <v-list-item-action>
               <v-icon>{{component.icon}}</v-icon>
             </v-list-item-action>
@@ -31,7 +31,9 @@
           <v-icon dark right medium>mdi-vimeo</v-icon>
 
           <v-spacer></v-spacer>
-
+          <v-btn @click="logout" v-if="isLogged" v color="white" text large>Logout
+            <v-icon dark right medium>mdi-home</v-icon>
+          </v-btn>
           <router-link class="hidden-sm-and-down" v-for="component in components" :key="component.id" :to="component.path">
               <v-btn color="white" text large>{{component.title}}
                 <v-icon dark right medium>{{component.icon}}</v-icon>
@@ -60,6 +62,8 @@
 </template>
 
 <script>
+
+  import { mapGetters } from 'vuex'
 
 export default {
   name: 'App',
@@ -92,7 +96,25 @@ export default {
           'path': '/about'
         }
       ],
-    })
+    }),
+
+    watch:{
+        isLogged(){
+          return this.components.splice(0,2);
+        }
+    },
+
+    computed: {
+      ...mapGetters([
+        'isLogged'
+      ])
+    },
+
+    methods:{
+      logout () {
+        this.$store.dispatch('logout');
+      }
+    }
 };
 </script>
 <style scoped>

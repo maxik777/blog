@@ -11,12 +11,13 @@
                 >
                     <v-card class="elevation-12">
                         <v-card-text>
-                            <v-form>
+                            <v-form @submit.prevent="login">
                                 <v-text-field
-                                        label="Login"
-                                        name="login"
+                                        label="Email"
+                                        name="email"
                                         prepend-icon="mdi-account"
-                                        type="text"
+                                        type="email"
+                                        v-model="email"
                                 ></v-text-field>
 
                                 <v-text-field
@@ -25,14 +26,15 @@
                                         name="password"
                                         prepend-icon="mdi-lock"
                                         type="password"
+                                        v-model="password"
                                 ></v-text-field>
+                                <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn type="submit" color="primary">Login</v-btn>
+                                    <v-spacer></v-spacer>
+                                </v-card-actions>
                             </v-form>
                         </v-card-text>
-                        <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn color="primary">Login</v-btn>
-                            <v-spacer></v-spacer>
-                        </v-card-actions>
                     </v-card>
                 </v-col>
             </v-row>
@@ -41,7 +43,29 @@
 
 <script>
     export default {
-        name: "Login"
+        name: "Login",
+
+        data:() => ({
+            email: '',
+            password: ''
+        }),
+
+        methods:{
+            login () {
+                this.$store
+                    .dispatch('login', {
+                        email: this.email,
+                        password: this.password
+                    })
+                    .then(() => {
+                        this.$router.push({ name: 'Home' })
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            }
+        }
+
     }
 </script>
 

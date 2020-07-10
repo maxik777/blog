@@ -11,12 +11,21 @@
             >
                 <v-card class="elevation-12">
                     <v-card-text>
-                        <v-form>
+                        <v-form @submit.prevent="register">
                             <v-text-field
-                                    label="Login"
-                                    name="login"
+                                    label="Name"
+                                    name="Name"
                                     prepend-icon="mdi-account"
                                     type="text"
+                                    v-model="name"
+                            ></v-text-field>
+
+                            <v-text-field
+                                    label="Email"
+                                    name="Email"
+                                    prepend-icon="mdi-account"
+                                    type="email"
+                                    v-model="email"
                             ></v-text-field>
 
                             <v-text-field
@@ -25,6 +34,7 @@
                                     name="password"
                                     prepend-icon="mdi-lock"
                                     type="password"
+                                    v-model="password"
                             ></v-text-field>
 
                             <v-text-field
@@ -33,14 +43,15 @@
                                     name="confirm-password"
                                     prepend-icon="mdi-lock"
                                     type="password"
+                                    v-model="confirmedPassword"
                             ></v-text-field>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn type="submit" color="primary">Register</v-btn>
+                                <v-spacer></v-spacer>
+                            </v-card-actions>
                         </v-form>
                     </v-card-text>
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn color="primary">Register</v-btn>
-                        <v-spacer></v-spacer>
-                    </v-card-actions>
                 </v-card>
             </v-col>
         </v-row>
@@ -49,7 +60,27 @@
 
 <script>
     export default {
-        name: "Register"
+        name: "Register",
+
+        data: ()=>({
+            name: '',
+            email: '',
+            password: '',
+            confirmedPassword: ''
+        }),
+        methods:{
+            register () {
+                this.$store
+                    .dispatch('register', {
+                        name: this.name,
+                        email: this.email,
+                        password: this.password,
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            }
+        }
     }
 </script>
 

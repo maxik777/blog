@@ -69,13 +69,15 @@
 </template>
 
 <script>
-// @ is an alias to /src
 
+  import { mapGetters } from 'vuex';
 
 export default {
   name: 'Home',
-  components: {
-
+  computed: {
+    ...mapGetters([
+      'isLogged'
+    ])
   },
   data: () => ({
     fab: false,
@@ -128,6 +130,9 @@ export default {
   }),
 
   methods: {
+    logout () {
+      this.$store.dispatch('logout')
+    },
     onScroll (e) {
       if (typeof window === 'undefined') return
       const top = window.pageYOffset ||   e.target.scrollTop || 0
