@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\V1\Auth\RegisterRequest;
 use App\Http\Requests\V1\Auth\LoginRequest;
@@ -17,7 +21,7 @@ class AuthController extends Controller
      *
      * @param  RegisterRequest $request
      *
-     * @return ResponseJson
+     * @return JsonResponse
      */
     public function register(RegisterRequest $request)
     {
@@ -25,7 +29,7 @@ class AuthController extends Controller
         if (!Auth::once($credentials))
         {
             $credentials['password'] = bcrypt($credentials['password']);
-            $user = User::create($credentials);
+            User::create($credentials);
             return response()->json(['message' => 'User registered successfully'], 200);
         }
         return response()->json(['message' => 'Email is not available.'], 422);
@@ -36,15 +40,10 @@ class AuthController extends Controller
      *
      * @param LoginRequest $request
      *
-     * @return ResponseJson
+     * @return Application|ResponseFactory|Response
      */
     public function login(LoginRequest $request)
     {
-        $data = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {

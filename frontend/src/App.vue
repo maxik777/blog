@@ -113,7 +113,13 @@ export default {
         }
     },
 
-    computed: {
+    created() {
+      if (this.isLogged){
+        return this.components.splice(0,2);
+      }
+    },
+
+  computed: {
       ...mapGetters([
         'isLogged'
       ])
